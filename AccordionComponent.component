@@ -1,0 +1,39 @@
+<apex:component controller="someController">
+    <apex:includeScript value="{!URLFOR($Resource.jquery)}" />
+    <apex:stylesheet value="{!URLFOR($Resource.jqueryui, 'jquery-ui.min.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.jqueryui, 'jquery-ui.min.js')}" />
+    <apex:actionStatus onstop="initAccordion()" id="refreshStatus" />
+    <apex:pageMessages id="errors" />
+
+    <apex:pageBlock id="accordion__container">
+        <div id="accordion__body">
+                <apex:repeat value="{!mainCollection}" var="listOfChildren">
+                    <h3>{!listOfChildren.title}</h3>
+                    <div>
+                        <apex:outputPanel id="tablePanel">
+                            <span style="float:right;margin:0px 120px 5px;">
+                            <a href="/{!listOfChildren.ParentId}"
+                                style="text-decoration: none">{!$Label.Redirect_To_record}</a>
+                            </span>
+                            <apex:pageblockTable value="{!listOfChildren.records}" var="record"
+                                rendered="true" id="theTable">
+                                <!-- columns -->
+                            </apex:pageblockTable>
+                        </apex:outputPanel>
+                    </div>
+                </apex:repeat>
+        </div>
+    </apex:pageblock>
+
+    <script>
+        
+        var j$ = jQuery.noConflict();
+        j$(document).ready(function () {
+            initAccordion();
+        });
+        
+        function initAccordion () {
+            j$("#accordion__body").accordion({heightStyle: "content", animate: 200});
+        }
+    </script>
+</apex:component>
