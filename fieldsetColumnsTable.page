@@ -1,0 +1,8 @@
+<apex:pageblockTable value="{!records}" var="record" rendered="true" id="theTable">
+<apex:repeat value="{!$ObjectType.mySobject__c.FieldSets.Related_List}" var="f">
+    <apex:column headerValue="{!$ObjectType.mySobject__c.fields[f].Label}">
+	<apex:outputField value="{!record[f]}" rendered="{!f != 'Name'}" />
+	<apex:outputLink value="/{!record['Id']}" rendered="{!f == 'Name'}">{!record[f]}</apex:outputLink>
+    </apex:column>
+</apex:repeat>
+</apex:pageblockTable>
