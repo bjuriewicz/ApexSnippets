@@ -1,3 +1,5 @@
+<!--dynamically add columns based on fieldset fields. works only for simple scenarios, without reference fields like "contact.Account.mailingStreet" -->
+<!-- dont forget to query those fields -->
 <apex:pageblockTable value="{!records}" var="record" rendered="true" id="theTable">
 <apex:repeat value="{!$ObjectType.mySobject__c.FieldSets.Related_List}" var="f">
     <apex:column headerValue="{!$ObjectType.mySobject__c.fields[f].Label}">

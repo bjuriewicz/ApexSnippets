@@ -1,0 +1,16 @@
+<!-- just pass the setcontrolller as a parameter and the navigation links will appear. Make sure to use it inside Form -->
+<apex:component >
+<apex:attribute name="setCon" description="set controller" type="ApexPages.StandardSetController" required="true" />
+
+<apex:panelGrid columns="5" cellspacing="10px" style="margin-left:auto; margin-right:0;" rendered="{!setCon.resultSize > 0}">
+        <apex:commandLink action="{!setCon.first}" rerender="mhBlock" styleClass="noUnder" rendered="{!setCon.hasPrevious}">« First</apex:commandlink>
+        <apex:outputText rendered="{! NOT(setCon.hasPrevious)}" style="color:grey" value="« First" />
+        <apex:commandLink action="{!setCon.previous}" rerender="mhBlock" styleClass="noUnder" rendered="{!setCon.hasPrevious}">‹ Previous</apex:commandlink>
+        <apex:outputText rendered="{! NOT(setCon.hasPrevious)}" style="color:grey" value="‹ Previous" />
+        <apex:commandLink action="{!setCon.next}" rerender="mhBlock" styleClass="noUnder" rendered="{!setCon.hasNext}">Next ›</apex:commandlink>
+        <apex:outputText rendered="{! NOT(setCon.hasNext)}" style="color:grey" value="Next ›" />
+        <apex:commandLink action="{!setCon.last}" rerender="mhBlock" styleClass="noUnder" rendered="{! setCon.hasNext}">Last »</apex:commandlink>
+        <apex:outputText rendered="{! NOT(setCon.hasNext)}" style="color:grey" value="Last »" />
+        <apex:outputText value="Page {!setCon.pageNumber} of {! CEILING(setCon.resultSize / setCon.pageSize) }" style="padding-left:30px" />
+    </apex:panelGrid>
+</apex:component>
