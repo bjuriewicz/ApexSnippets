@@ -1,0 +1,10 @@
+HttpRequest req = new HttpRequest();
+string endpointUrl = System.URL.getSalesforceBaseURL().toExternalForm() + '/services/data/v37.0/sobjects/OrgWideEmailAddress';
+req.setEndpoint(endpointUrl);
+req.setHeader('Authorization', 'OAuth ' + UserInfo.getSessionID());
+req.setHeader('Content-Type', 'application/json');
+req.setMethod('POST');
+req.setBody('{Address: test3@wp.pl,DisplayName: testname3, IsAllowAllProfiles: true}');
+Http httpreq = new Http();
+HttpResponse res = httpreq.send(req);
+System.debug(res.getBody());
