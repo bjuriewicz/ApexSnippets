@@ -1,0 +1,4 @@
+<aura:component controller="My_Controller" implements="force:lightningQuickAction,force:hasRecordId" >
+	<aura:attribute name="recordId" type="Id" />
+    <button class="slds-button slds-button_neutral" onclick="{!c.clone}">Clone</button>
+</aura:component>
